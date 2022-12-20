@@ -1,0 +1,340 @@
+.index{
+    width: 100%;
+    padding-bottom: 200px;
+
+    .index-container{
+        width: 1366px;
+        min-height: 768px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+    }
+
+    // 主页banner
+    .banner{
+        position: relative;
+        height: 263px;
+        z-index: 2;
+        min-width: 1178px;
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 84px;
+
+        // 搜索按钮
+        .search{
+            .search-input{
+                width: 800px;
+                background: rgba(255,255,255,.5);
+                font-size: 16px;
+                padding: 9px 15px 9px 40px;
+                border-radius: 20px;
+            }
+        }
+
+        .banner-text{
+            font-size: 32px;
+            margin-bottom: 0;
+        }
+
+        .banner-text2{
+            font-size: 16px;
+            padding-left: 178px;
+        }
+    }
+
+    // 文章类型模块
+    .article-classify{
+        position: relative;
+        margin-top: 100px;
+        width: 100%;
+        height: 300px;
+
+        // 标题
+        .article-title{
+            height: 40px;
+            font-size: 20px;
+            color: #000;
+            padding-left: 20px;
+            border-bottom: 1px solid rgba(0,0,0,.2);
+        }
+
+        // 轮播模块
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+            padding: 0 20px;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            height: 260px;
+            background: linear-gradient(-45deg, #f3cf3f 0%,#f33f58 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s;
+
+            .effect-milo{
+                cursor: pointer;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                img{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 295px;
+                    opacity: 1;
+                    width: 100%;
+                }
+
+
+                .effect-item{
+                    padding: 0 20px 0;
+                    color: #fff;
+                    text-transform: uppercase;
+                    font-size: 15px;
+                    -webkit-backface-visibility: hidden;
+                    backface-visibility: hidden;
+
+                    .item-link{
+                        color: rgba(0, 0, 0, 0.8)
+                    }
+
+                    &:before, &:after{
+                        position: absolute;
+                        content: '';
+                        opacity: 0;
+                    }
+
+                    &:before{
+                        top: 33px;
+                        left: 10px;
+                        bottom: 37px;
+                        border-top: 1px solid #fff;
+                        border-bottom: 1px solid #fff;
+                        -webkit-transform: scale(0, 1);
+                        transform: scale(0, 1);
+                        -webkit-transform-origin: 0 0;
+                        transform-origin: 0 0;
+                        width: 287px;
+                    }
+
+                    &:after{
+                        top: 19px;
+                        right: 20px;
+                        bottom: 34px;
+                        left: 20px;
+                        border-right: 1px solid #fff;
+                        border-left: 1px solid #fff;
+                        -webkit-transform: scale(1, 0);
+                        transform: scale(1, 0);
+                        -webkit-transform-origin: 100% 0;
+                        transform-origin: 100% 0;
+                        height: 221px;
+                    }
+                }
+            }
+
+            .item-title {
+                padding-top: 26%;
+                -webkit-transition: -webkit-transform 0.35s;
+                transition: transform 0.35s;
+            }
+
+            .item-description {
+                padding: 10px 20px;
+                text-transform: none;
+                opacity: 0;
+                -webkit-transform: translate3d(0,-10px,0);
+                transform: translate3d(0,-10px,0);
+            }
+
+            img, .effect-item:before, .effect-item:after, .item-description {
+                -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+                transition: opacity 0.35s, transform 0.35s;
+            }
+
+            &:hover .effect-item:before,
+            &:hover .effect-item:after {
+                opacity: 1;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+
+            &:hover .item-title,
+            &:hover .item-description {
+                opacity: 1;
+                -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+            }
+
+            &:hover .effect-item:after,
+            &:hover .item-title,
+            &:hover .item-description,
+            &:hover img {
+                -webkit-transition-delay: 0.15s;
+                transition-delay: 0.15s;
+            }
+
+            &:hover img {
+                opacity: 0.7;
+                -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+            }
+
+            img, .item-title {
+                -webkit-transform: translate3d(0,-30px,0);
+                transform: translate3d(0,-30px,0);
+            }
+
+            img, .effect-item:before, .effect-item:after, .item-description {
+                -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+                transition: opacity 0.35s, transform 0.35s;
+            }
+
+        }
+
+    }
+
+    // 推荐文章模块
+    .recommend{
+        position: relative;
+        margin-top: 100px;
+        width: 100%;
+        height: 300px;
+
+        // 标题
+        .recommend-title{
+            height: 40px;
+            font-size: 20px;
+            color: #000;
+            padding-left: 20px;
+            border-bottom: 1px solid rgba(0,0,0,.2);
+        }
+
+        .recommend-wrapper{
+            display: flex;
+            flex-direction: row;
+
+            .article-list{
+                width: 840px;
+                height: 240px;
+                margin-bottom: 10px;
+                padding: 20px;
+                overflow: hidden;
+                box-shadow: 0 3px 28px -7px rgba(0,0,0,.5);
+                display: flex;
+                flex-direction: row;
+
+                .list-left{
+                    position: relative;
+                    img{
+                       width: 240px;
+                       height: 160px;
+                       border-radius: 5px;
+                    }
+
+                    .article-list-info{
+                        display: flex;
+                        margin: 20px 0 0 0;
+                        color: #838383;
+                        position: absolute;
+
+                        .info-item{
+                            margin-right: 10px;
+                            display: flex;
+                            align-items: center;
+                            font-size: 14px;
+                            min-width: 94px;
+
+                            .icon{
+                                font-size: 16px;
+                                margin-right: 10px;
+
+                                &.tag{
+                                    color: rgba(248, 168, 168, 1)
+                                }
+
+                                &.time{
+                                    color: rgba(101, 232, 234, 1)
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+                // 右侧文章内容
+                .list-right{
+                    margin-left: 20px;
+                    letter-spacing: 1px;
+                    position: relative;
+                    padding-bottom: 30px;
+
+                    .article-title{
+                        line-height: 30px;
+                        height: 30px;
+                        margin: 10px 0;
+                        font-weight: bold;
+                        font-size: 18px;
+                        color: #666;
+                    }
+
+                    .article-content{
+                        line-height: 26px;
+                        color: #888;
+                    }
+
+                    .read-orign{
+                        position: absolute;
+                        color: #4ba8c9;
+                        right: 3px;
+                        height: 20px;
+                        cursor: pointer;
+                        bottom: -16px;
+                        &:hover{
+                            border-bottom: 1px solid #4ba8c9;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // <div className="recommend-wrapper">
+    //     {/* 左侧推荐文章 */}
+    //     <div className="recommend-article">
+    //         <div className="article-list">
+
+    //         </div>
+    //     </div>
+
+    //     {/* 右侧个人信息 */}
+    //     <div className="base-info"></div>
+    // </div>
+
+
+    // {/* 左侧文章封面 */}
+    // <div className="article-list">
+    //     <div className="list-left">
+    //         <img src="http://localhost:3000/images/classify11.jpg" alt=""/>
+    //     </div>
+
+    //     {/* 右侧文章内容 */}
+    //     <div className="article-content">
+    //         <p className="article-title">这里是文章标题</p>
+    //         <p className="article-content">这里是文章内容</p>
+    //     </div>
+
+    //     {/* 阅读原文 */}
+    // </div>
+
+    // {/* 右侧文章内容 */}
+    // <div className="article-content">
+    //     <p className="article-title">这里是文章标题</p>
+    //     <p className="article-content">这里是文章内容</p>
+    // </div>
+}
