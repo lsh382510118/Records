@@ -1,6 +1,0 @@
-apps: 
-  - script: ./server/server.js
-    name: moonya
-    env_production: 
-      NODE_ENV: production
-      HOST: localhost
