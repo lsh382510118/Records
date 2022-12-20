@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "noImplicitThis": false,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "jsx": "react-jsx",
+    "noEmitOnError": true,
+    "target": "es2015",
+    "baseUrl": "./",
+    "outDir": "dist",
+    "typeRoots": ["./src/typings/", "./node_modules/@types", "./typings.d.ts"],
+    "paths": {
+      "@/*": ["src/*"],
+    },
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "plugins": []
+  },
+  "include": ["src", "typings.d.ts"],
+  "exclude": ["build", "dist", "node_modules", "__test__"]
+}

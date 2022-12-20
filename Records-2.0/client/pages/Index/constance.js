@@ -1,0 +1,58 @@
+export const articleClassify = [
+	{
+		id: 'asdd2454cvgrty',
+		thumb: 'http://localhost:3000/images/classify10.jpg',
+		title: 'MySql',
+		description: 'mysql常用命令， mysql 连表查询',
+		article_num: 30,
+	},
+	{
+		id: 'as123Asdfcvgrty',
+		thumb: 'http://localhost:3000/images/classify1.jpg',
+		title: 'javaScript设计模式',
+		description: 'mysql常用命令， mysql 连表查询',
+		article_num: 30,
+	},
+	{
+		id: 'asdfgdfgvgrty',
+		thumb: 'http://localhost:3000/images/classify2.jpg',
+		title: 'React',
+		description: 'mysql常用命令， mysql 连表查询',
+		article_num: 30,
+	},
+	{
+		id: 'asdd24ghcvrty',
+		thumb: 'http://localhost:3000/images/classify3.jpg',
+		title: 'Vue',
+		description: 'mysql常用命令， mysql 连表查询',
+		article_num: 30,
+	},
+	{
+		id: 'asdtyrtcvgrty',
+		thumb: 'http://localhost:3000/images/classify4.jpg',
+		title: 'Node',
+		description: 'mysql常用命令， mysql 连表查询',
+		article_num: 30,
+	},
+	{
+		id: 'avbns4cvgrty',
+		thumb: 'http://localhost:3000/images/classify5.jpg',
+		title: 'http模块',
+		description: 'mysql常用命令， mysql 连表查询',
+		article_num: 30,
+	},
+	{
+		id: 'gsdcccvgrty',
+		thumb: 'http://localhost:3000/images/classify6.jpg',
+		title: 'js模块',
+		description: 'mysql常用命令， mysql 连表查询',
+		article_num: 30,
+	},
+	{
+		id: 'gtgttrrcvgrty',
+		thumb: 'http://localhost:3000/images/classify7.jpg',
+		title: 'weex模块',
+		description: 'mysql常用命令， mysql 连表查询',
+		article_num: 30,
+	},
+];
