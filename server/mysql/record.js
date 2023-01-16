@@ -17,15 +17,25 @@ createTable(records);
 
 // // 新增记录
 exports.insertRecord = (value) => {
-	console.log('value', value);
 	let _sql =
-		'insert into records set name=?, number=?, price=?, time=?, amount=?, total=?, rate=?, Breakeven=?, description=?;';
+		'insert into records set name=?, number=?, isAdd=?, price=?, time=?, amount=?, total=?, rate=?, Breakeven=?, description=?;';
 	return query(_sql, value);
 };
 
 // 获取记录
 exports.getRecords = (value) => {
-	let _sql = 'select * from records';
+	const [name, isAdd] = value;
+	let sqlStr = 'select * from records';
+	let filterSql = '';
+	if (name) {
+		filterSql = ` where name = '${name}'`;
+	}
+	if (isAdd && isAdd != '2') {
+		filterSql = filterSql
+			? `${filterSql} AND isAdd = '${isAdd}'`
+			: ` where name = '${name}'`;
+	}
+	let _sql = `${sqlStr} ${filterSql}`;
 	return query(_sql, value);
 };
 
@@ -38,6 +48,6 @@ exports.delRecord = (id) => {
 // 更新记录
 exports.updateRecord = (value) => {
 	let _sql =
-		'update records set name=?, description=?, amount=?, number=?, price=?, time=? where id=?';
+		'update records set name=?, number=?, isAdd=?, price=?,time=?,amount=?, Breakeven=?,description=? where id=?';
 	return query(_sql, value);
 };

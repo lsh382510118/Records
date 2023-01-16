@@ -25,7 +25,7 @@
     ]
   },
   "dependencies": {
-    "antd": "^3.6.5",
+    "antd": "^5.1.2",
     "axios": "^0.17.1",
     "babel-plugin-import": "^1.7.0",
     "cross-env": "^5.1.4",

@@ -213,5 +213,4 @@ class Register extends Component {
 		);
 	}
 }
-const RegisterForm = Form.create()(Register);
-export default RegisterForm;
+export default Register;

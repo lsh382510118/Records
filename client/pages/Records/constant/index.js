@@ -10,6 +10,14 @@ export const columns = [
 		key: 'number',
 	},
 	{
+		title: 'isAdd',
+		dataIndex: 'isAdd',
+		key: 'isAdd',
+		render: (text, record) => (
+			<div> {record.isAdd == '0' ? 'Reduce' : 'Add'}</div>
+		),
+	},
+	{
 		title: 'price',
 		dataIndex: 'price',
 		key: 'price',

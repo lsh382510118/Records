@@ -3,8 +3,16 @@ const { responseCode } = require('./../constant');
 
 // 新增记录
 exports.add = async (ctx) => {
-	let { amount, description, name, number, price, time, Breakeven } =
-		ctx.request.body;
+	let {
+		amount,
+		description = '',
+		name,
+		number,
+		isAdd,
+		price,
+		time,
+		Breakeven,
+	} = ctx.request.body;
 	let total, rate;
 	total = number * price;
 	rate = '0.00';
@@ -13,6 +21,7 @@ exports.add = async (ctx) => {
 		.insertRecord([
 			name,
 			number,
+			isAdd,
 			price,
 			time,
 			amount,
@@ -32,8 +41,8 @@ exports.add = async (ctx) => {
 
 // 获取记录
 exports.getList = async (ctx) => {
-	// let {  } = ctx.request.body;
-	await service.getRecords([]).then((res) => {
+	let { name, isAdd } = ctx.request.body;
+	await service.getRecords([name, isAdd]).then((res) => {
 		// 注册成功， 返回信息
 		ctx.body = {
 			code: responseCode.success,
@@ -57,11 +66,30 @@ exports.del = async (ctx) => {
 
 // 新增记录
 exports.update = async (ctx) => {
-	let { id, amount, description, name, number, price, time } =
-		ctx.request.body;
+	let {
+		id,
+		amount,
+		description,
+		name,
+		number,
+		price,
+		time,
+		isAdd,
+		Breakeven,
+	} = ctx.request.body;
 
 	await service
-		.updateRecord([name, description, amount, number, price, time, id])
+		.updateRecord([
+			name,
+			number,
+			isAdd,
+			price,
+			time,
+			amount,
+			Breakeven,
+			description,
+			id,
+		])
 		.then((res) => {
 			// 注册成功， 返回信息
 			ctx.body = {

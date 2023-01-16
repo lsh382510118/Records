@@ -6,15 +6,21 @@ import Add from './components/Add/index';
 import './index.less';
 import { columns } from './constant';
 import { getRecords, delRecord } from './service';
+import Filter from './components/FIlter';
 
 const Index = () => {
 	const [showAdd, setShowAdd] = useState(false);
 	const [operaType, setOperaType] = useState('add');
 	const [itemData, setItemData] = useState({});
 	const [dataSource, setData] = useState([]);
+	const [filterData, setFilterData] = useState({
+		name:'',
+		time:'',
+		isAdd:"2"
+	});
 
-	const getData = function () {
-		getRecords({}).then((res:any) => {
+	const getData = function (params = {}) {
+		getRecords(params).then((res:any) => {
 			setData(res.result);
 		});
 	};
@@ -23,7 +29,11 @@ const Index = () => {
 		setShowAdd(false);
 		getData();
 	};
-
+	const filterCallback = (params) => {
+		setFilterData(params)
+		getData(params);
+	};
+	
 	const del = (item) => {
 		Modal.confirm({
 			title: 'Delete',
@@ -60,7 +70,7 @@ const Index = () => {
 				<div>
 					<Button
 						size="small"
-						type="danger"
+						danger
 						onClick={() => {
 							del(record);
 						}}
@@ -90,6 +100,12 @@ const Index = () => {
 			{/* <Header /> */}
 			{/* 主页居中容器 */}
 			<div className="records-container">
+				<div className="records-filter">
+					<Filter 
+						filterData={filterData}
+						type={operaType}
+						filterCallback={filterCallback} />
+				</div>
 				<div className="records-operations">
 					<Button
 						onClick={() => {
@@ -110,10 +126,11 @@ const Index = () => {
 			<Modal
 				title="Add record"
 				centered
-				visible={showAdd}
+				open={showAdd}
 				onCancel={() => setShowAdd(false)}
 				width={1000}
 				footer={null}
+				forceRender
 			>
 				<div>
 					<Add

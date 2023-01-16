@@ -401,6 +401,5 @@ Register.contextTypes = {
 	router: PropTypes.object.isRequired,
 };
 
-const RegisterForm = Form.create()(Register);
 
-export default RegisterForm;
+export default Register;

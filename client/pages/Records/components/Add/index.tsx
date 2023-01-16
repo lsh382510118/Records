@@ -1,24 +1,26 @@
-import React, { useEffect } from 'react';
-import { Form, Input, Button, DatePicker, message } from 'antd';
+import React, { useEffect, useRef } from 'react';
+import { Form, Input, Button, DatePicker, message, Select } from 'antd';
 import { addRecord, updateRecord } from '../../service';
-const moment = require('moment');
+import moment from 'moment';
 
 const { TextArea } = Input;
 
 interface ProdType {
-	addCallback: (params:any) =>{}; 
+	addCallback: (params:any) => any; 
 	itemData?: any; 
 	type: string;
-	form?: any;
 }
 
 
-let Add = (prods:ProdType) => {
-	const { form, addCallback, itemData, type } = prods;
+const Add = (prods:ProdType) => {
+	const { addCallback, itemData, type } = prods;
+	const [form] = Form.useForm();
+	
+	const formRef = useRef(null);
 	const formatStr = 'YYYY-MM-DD HH:mm:ss';
 
-	const add = function (values) {
-		let nowDate = new Date().getTime();
+	const add = function (values: any) {
+		const nowDate = new Date().getTime();
 		addRecord({
 			...values,
 			time:
@@ -34,16 +36,16 @@ let Add = (prods:ProdType) => {
 		});
 	};
 
-	const edit = function (values) {
-		console.log(values);
-		let nowDate = new Date().getTime();
-		updateRecord({
+	const edit = function (values: any) {
+		const nowDate = new Date().getTime();
+		const data = {
 			...values,
 			id: itemData.id,
 			time:
 				(values.time && values.time.format(formatStr)) ||
 				moment(nowDate).format(formatStr),
-		}).then((res: any) => {
+		}
+		updateRecord(data).then((res: any) => {
 			if (res.code === '0000') {
 				message.success(res.message);
 				addCallback(res);
@@ -52,7 +54,7 @@ let Add = (prods:ProdType) => {
 			}
 		});
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = () => {
 		const values = form.getFieldsValue();
 		if (type === 'update') {
 			edit(values);
@@ -62,117 +64,141 @@ let Add = (prods:ProdType) => {
 		return false;
 	};
 
+	const onChange = function(){
+
+	}
+
+	const onOk = function(){
+		
+	}
 	useEffect(() => {
-		if (type === 'update') {
+		if (type === 'update' && formRef.current) {
 			const values = { ...itemData };
-			for (let i in values) {
+			for (const i in values) {
 				values[i] = `${values[i]}`;
 			}
 			delete values.id;
 			values.time = moment(values.time, formatStr);
 			form.setFieldsValue(values);
 		}
-	}, [itemData, type]);
+	}, [itemData, type, form]);
 
-	const { getFieldDecorator } = form;
 	return (
 		<Form
-			onSubmit={handleSubmit}
 			labelCol={{ span: 4 }}
 			wrapperCol={{ span: 20 }}
+			ref={formRef}
+			form={form}
 		>
-			<Form.Item label="name">
-				{getFieldDecorator('name', {
-					rules: [
-						{
-							required: true,
-							message: 'Please input name',
-						},
-					],
-				})(<Input placeholder="Please input name" />)}
-			</Form.Item>
+      <Form.Item
+        name="name"
+        label="Name"
+        rules={[
+					{
+						required: true,
+						message: 'Please input name',
+					},
+        ]}
+      >
+			<Input placeholder="Please input name" />
+      </Form.Item>
 
-			<Form.Item label="time">
-				{getFieldDecorator('time', {
-					rules: [
-						{
-							required: true,
-							message: 'Please pick date',
-						},
-					],
-				})(
-					<DatePicker
+      <Form.Item
+        name="time"
+        label="Time"
+        rules={[
+					{
+						required: true,
+						message: 'Please pick date',
+					},
+        ]}
+      >
+        <DatePicker
 						showTime
 						format={formatStr}
 						style={{ width: '100%' }}
-					/>,
-				)}
+					/>
+      </Form.Item>
+
+      <Form.Item
+        name="amount"
+        label="Amount"
+        rules={[
+					{
+						required: true,
+						message: 'Please pick amount',
+					},
+        ]}
+      >
+        <Input placeholder="Please input amount" />
+      </Form.Item>
+
+			<Form.Item
+				name="number"
+				label="Number"
+				rules={[
+					{
+						required: true,
+						message: 'Please pick number',
+					},
+				]}
+			>
+				<Input placeholder="Please input number" />
 			</Form.Item>
 
-			<Form.Item label="amount">
-				{getFieldDecorator('amount', {
-					rules: [
-						{
-							required: true,
-							message: 'Please pick amount',
-						},
-					],
-				})(<Input placeholder="Please input amount" />)}
+			<Form.Item
+				name="isAdd"
+				label="isAdd"
+				rules={[
+					{
+						required: true,
+						message: 'Please pick type',
+					},
+				]}
+			>
+				<Select>
+          <Select.Option value="1">add</Select.Option>
+          <Select.Option value="0">reduce</Select.Option>
+        </Select>
 			</Form.Item>
 
-			<Form.Item label="number">
-				{getFieldDecorator('number', {
-					rules: [
-						{
-							required: true,
-							message: 'Please pick number',
-						},
-					],
-				})(<Input placeholder="Please input number" />)}
+			<Form.Item
+				name="price"
+				label="Price"
+				rules={[
+					{
+						required: true,
+						message: 'Please pick price',
+					},
+				]}
+			>
+				<Input placeholder="Please input price" />
 			</Form.Item>
 
-			<Form.Item label="price">
-				{getFieldDecorator('price', {
-					rules: [
-						{
-							required: true,
-							message: 'Please pick price',
-						},
-					],
-				})(<Input placeholder="Please input price" />)}
+			<Form.Item
+				name="Breakeven"
+				label="Breakeven"
+				rules={[
+					{
+						required: true,
+						message: 'Please pick breakeven',
+					},
+				]}
+			>
+				<Input placeholder="Please input breakeven" />
 			</Form.Item>
 
-			<Form.Item label="Breakeven">
-				{getFieldDecorator('Breakeven', {
-					rules: [
-						{
-							required: true,
-							message: 'Please pick Breakeven',
-						},
-					],
-				})(<Input placeholder="Please input Breakeven" />)}
+			<Form.Item
+				name="description"
+				label="description"
+			>
+				<TextArea placeholder="Please input description" />
 			</Form.Item>
 
-			<Form.Item label="description">
-				{getFieldDecorator('description', {
-					rules: [
-						{
-							required: false,
-							message: 'Please input description',
-						},
-					],
-				})(
-					<TextArea
-						rows={4}
-						placeholder="Please input description"
-					/>,
-				)}
-			</Form.Item>
 
 			<Form.Item labelAlign="right" wrapperCol={{ span: 24 }}>
 				<div className="" style={{ textAlign: 'right' }}>
 					<Button type="primary" onClick={handleSubmit}>
-						{' '}
 						submit{' '}
 					</Button>
 				</div>
@@ -181,4 +207,4 @@ let Add = (prods:ProdType) => {
 	);
 };
 
-export default Form.create({})(Add);;
+export default Add;
